@@ -19,6 +19,7 @@ public class Oven : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log(other.gameObject);
         if (!utensil)
             utensil = other.gameObject.GetComponent<KitchenUtensil>();
 
