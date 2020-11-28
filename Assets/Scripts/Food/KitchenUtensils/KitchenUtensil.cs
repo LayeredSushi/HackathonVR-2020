@@ -9,7 +9,6 @@ public abstract class KitchenUtensil : Grabbable
     public float temperatureChangeRate = 0.05f;
 
     private void Update()
-
     {
         if (foodItem)
             if (foodItem.temperature < temperature)
@@ -17,7 +16,6 @@ public abstract class KitchenUtensil : Grabbable
             else if (foodItem.temperature > temperature)
                 foodItem.temperature = Mathf.Clamp(foodItem.temperature - temperatureChangeRate, 0, temperature);
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
