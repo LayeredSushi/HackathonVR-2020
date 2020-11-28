@@ -9,8 +9,9 @@ public abstract class FoodItem : Grabbable
     public float itemHp = 100f;
     public bool isSpoiled = false;
     public bool isFinished = false;
-    public Mesh SpoiledMesh;
 
+    public Mesh SpoiledMesh;
+    public Mesh ProcessedFood;
     private void Update()
     {
         if (currentTemperature >= minimumCookingTemperature && currentTemperature < startingSpoilTemperature && !isSpoiled)
@@ -45,5 +46,10 @@ public abstract class FoodItem : Grabbable
     public void DecreaseItemHp(float value)
     {
         itemHp = Mathf.Clamp(itemHp -= value, 0, itemHp);
+    }
+
+    public void ProcessFood()
+    {
+        GetComponent<MeshFilter>().mesh = ProcessedFood;
     }
 }
