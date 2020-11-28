@@ -17,17 +17,14 @@ public class Oven : MonoBehaviour
     {
         
     }
-
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerStay(Collider other)
     {
-        Debug.Log("aaaa");
+        if (!utensil)
+            utensil = other.gameObject.GetComponent<KitchenUtensil>();
 
-        if (collision.gameObject.GetType() == typeof(KitchenUtensil))
+        if (utensil)
         {
-            if(!utensil)
-                utensil = collision.gameObject.GetComponent<KitchenUtensil>();
-            
-            if(utensil.temperature < 300)
+            if (utensil.temperature < 300)
             {
                 utensil.temperature += 0.05f;
             }
