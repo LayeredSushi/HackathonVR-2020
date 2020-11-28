@@ -17,12 +17,17 @@ public class Oven : MonoBehaviour
     {
         
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        utensil = null;
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (!utensil)
         {
             utensil = other.gameObject.GetComponent<KitchenUtensil>();
-            Debug.Log(utensil.gameObject);
         }
 
         if (utensil)
