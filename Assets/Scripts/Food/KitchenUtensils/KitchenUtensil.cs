@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class KitchenUtensil : Grabbable
 {
     public float temperature;
-    protected FoodItem foodItem;
+    public FoodItem foodItem;
     public float temperatureChangeRate = 0.05f;
 
     private void Update()
