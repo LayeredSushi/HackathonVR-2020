@@ -9,6 +9,4 @@ public class Potato : FoodItem
     {
         Debug.Log("My life is POTATO");
     }
-
-    
 }

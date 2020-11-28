@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Pan : KitchenUtensil
 {
-    // Update is called once per frame
-    void Update()
+    private new void Update()
     {
-        
+        base.Update();
     }
 }

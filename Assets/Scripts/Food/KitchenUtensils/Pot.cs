@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Pot : KitchenUtensil
 {
-    
+    private new void Update()
+    {
+        base.Update();
+    }
 }
