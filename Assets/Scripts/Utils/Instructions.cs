@@ -23,7 +23,7 @@ public class Instructions : MonoBehaviour
         return instance;
     }
 
-    public void setInstruction(string text)
+    public void SetInstruction(string text)
     {
         instructionsText.SetText(text);
     }

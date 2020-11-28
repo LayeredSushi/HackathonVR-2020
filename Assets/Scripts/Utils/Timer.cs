@@ -29,6 +29,8 @@ public class Timer : MonoBehaviour
 
     public void StartTimer(float timeRemaining)
     {
+        SetBlackTextColor();
+
         StopTimer();
         this.timeRemaining = timeRemaining;
         timerIsRunning = true;
@@ -41,13 +43,28 @@ public class Timer : MonoBehaviour
 
     public void ContinueTimer()
     {
+        SetBlackTextColor();
         timerIsRunning = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void SetError(string errorMessage)
     {
-        timerIsRunning = true;
+        StopTimer();
+        SetRedTextColor();
+        timeText.text = errorMessage;
+    }
+
+    private void SetBlackTextColor()
+    {
+        timeText.enableAutoSizing = false;
+        timeText.fontSize = 40;
+        timeText.color = Color.black;
+    }
+
+    private void SetRedTextColor()
+    {
+        timeText.enableAutoSizing = true;
+        timeText.color = Color.red;
     }
 
     // Update is called once per frame
