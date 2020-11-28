@@ -1,0 +1,16 @@
+
+<config>
+  
+  <audioStep>AudioStepParser</audioStep>
+  
+  <allowAssembleStep>AllowAssembleStepParser</allowAssembleStep>
+  
+  <assemblingStepParser>AssemblingStep</assemblingStepParser>
+  
+  <finishStep>FinishStepParser</finishStep>
+  
+  <questionStep>QuestionStepParser</questionStep>
+  
+  <teleportAllowStep>TeleportAllowStepParser</teleportAllowStep>
+  
+</config>

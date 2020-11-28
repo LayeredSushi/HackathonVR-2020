@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 6fa11a15b6830ea40808c51f7a5f0a4e
+folderAsset: yes
+timeCreated: 1479762244
+=======
+<<<<<<< HEAD:Assets/3-rd-Party/SteamVR/InteractionSystem/Samples/Squishy/Textures.meta
+guid: 30f4aba0a2951c443989387963f8b0a0
+folderAsset: yes
+timeCreated: 1530220334
+=======
+guid: 6fa11a15b6830ea40808c51f7a5f0a4e
+folderAsset: yes
+timeCreated: 1479762244
+>>>>>>> michal:Assets/3-rd-Party/SteamVR/InteractionSystem/Hints/Textures.meta
+>>>>>>> michal
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
