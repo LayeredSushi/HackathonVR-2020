@@ -31,5 +31,6 @@ public abstract class KitchenUtensil : Grabbable
         if (other.GetType().IsSubclassOf(typeof(FoodItem)))
         {
             foodItem = null;
+        }
     }
 }
