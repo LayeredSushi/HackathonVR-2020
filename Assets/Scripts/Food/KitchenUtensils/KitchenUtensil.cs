@@ -21,16 +21,20 @@ public abstract class KitchenUtensil : Grabbable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetType().IsSubclassOf(typeof(FoodItem)))
+
+        if (other.gameObject.GetComponent<FoodItem>())
         {
+
             foodItem = other.gameObject.GetComponent<FoodItem>();
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetType().IsSubclassOf(typeof(FoodItem)))
+        if (other.gameObject.GetComponent<FoodItem>())
         {
             foodItem = null;
         }
+
+        Debug.Log(other + "Exit");
     }
 }
