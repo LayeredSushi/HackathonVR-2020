@@ -7,7 +7,43 @@ public class Timer : MonoBehaviour
     private float timeRemaining = 60;
     private bool timerIsRunning = false;
     public TMP_Text timeText;
-    
+
+    private static Timer instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = gameObject.GetComponent<Timer>();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public static Timer GetInstance()
+    {
+        return instance;
+    }
+
+    public void StartTimer(float timeRemaining)
+    {
+        StopTimer();
+        this.timeRemaining = timeRemaining;
+        timerIsRunning = true;
+    }
+
+    public void StopTimer()
+    {
+        timerIsRunning = false;
+    }
+
+    public void ContinueTimer()
+    {
+        timerIsRunning = true;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
