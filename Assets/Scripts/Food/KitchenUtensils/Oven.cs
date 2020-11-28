@@ -5,37 +5,54 @@ using UnityEngine;
 public class Oven : MonoBehaviour
 {
 
-    KitchenUtensil utensil;
+   public List<KitchenUtensil> utensils;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.GetComponent<KitchenUtensil>())
+            AddUtensil(other.gameObject.GetComponent<KitchenUtensil>());
     }
 
     private void OnTriggerExit(Collider other)
     {
-        utensil = null;
+        if (other.gameObject.GetComponent<KitchenUtensil>())
+            RemoveUtensil(other.gameObject.GetComponent<KitchenUtensil>());
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (!utensil)
-        {
-            utensil = other.gameObject.GetComponent<KitchenUtensil>();
-        }
 
-        if (utensil)
+        foreach (var utensil in utensils)
         {
             if (utensil.temperature < 300)
             {
                 utensil.temperature += 0.05f;
             }
+        }
+
+
+
+    }
+    public void AddUtensil(KitchenUtensil utensil)
+    {
+        Debug.Log("Tried to add");
+        if (utensils != null && utensil!=null && !utensils.Contains(utensil))
+        {
+            utensils.Add(utensil);
+        }
+    }
+    public void RemoveUtensil(KitchenUtensil utensil)
+    {
+        Debug.Log("Tried to remove");
+        if (utensils != null && utensil != null && utensils.Contains(utensil))
+        {
+            utensils.Remove(utensil);
         }
     }
 }
