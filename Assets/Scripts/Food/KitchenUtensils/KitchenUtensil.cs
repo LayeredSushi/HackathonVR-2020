@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class KitchenUtensil : Grabbable
 {
-    protected float temperature;
+    public float temperature;
     protected FoodItem foodItem;
 }
