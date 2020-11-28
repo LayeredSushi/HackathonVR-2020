@@ -456,7 +456,7 @@ MonoBehaviour:
   beingGrabbed: 0
   scaleSpeed: 0.1
   temperature: 0
-  maximumTemperature: 0
+  maximumTemperature: 100
 --- !u!114 &148863755
 MonoBehaviour:
   m_ObjectHideFlags: 0
