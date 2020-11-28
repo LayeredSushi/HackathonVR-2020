@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class FoodItem : MonoBehaviour
+public abstract class FoodItem : Grabbable
 {
 
 }
