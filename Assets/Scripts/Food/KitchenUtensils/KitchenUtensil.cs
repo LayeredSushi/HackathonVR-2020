@@ -11,10 +11,10 @@ public abstract class KitchenUtensil : Grabbable
     public void Update()
     {
         if (foodItem)
-            if (foodItem.temperature < temperature)
-                foodItem.temperature = Mathf.Clamp(foodItem.temperature + temperatureChangeRate, 0, temperature);
-            else if (foodItem.temperature > temperature)
-                foodItem.temperature = Mathf.Clamp(foodItem.temperature - temperatureChangeRate, 0, temperature);
+            if (foodItem.currentTemperature < temperature)
+                foodItem.currentTemperature = Mathf.Clamp(foodItem.currentTemperature + temperatureChangeRate, 0, temperature);
+            else if (foodItem.currentTemperature > temperature)
+                foodItem.currentTemperature = Mathf.Clamp(foodItem.currentTemperature - temperatureChangeRate, 0, temperature);
     }
 
     private void OnTriggerEnter(Collider other)
