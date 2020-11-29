@@ -8,11 +8,12 @@ public class FridgeSpawnUnit : MonoBehaviour
 
     private void Awake()
     {
-        Instantiate(prefab);
+        Instantiate(prefab, gameObject.transform);
+        Debug.Log("a");
     }
 
     private void OnTriggerExit(Collider other)
     {
-        Instantiate(prefab);
+        Instantiate(prefab, gameObject.transform);
     }
 }
