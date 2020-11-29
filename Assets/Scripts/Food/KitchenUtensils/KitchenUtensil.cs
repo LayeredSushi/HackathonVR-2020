@@ -16,15 +16,19 @@ public abstract class KitchenUtensil : Grabbable
         }
     }
 
-    public void Update()
+    public new  void Update()
     {
+       // base.Update();
         if (foodItem)
             if (foodItem.currentTemperature < temperature)
                 foodItem.currentTemperature = Mathf.Clamp(foodItem.currentTemperature + temperatureChangeRate, 0, temperature);
             else if (foodItem.currentTemperature > temperature)
                 foodItem.currentTemperature = Mathf.Clamp(foodItem.currentTemperature - temperatureChangeRate, 0, temperature);
     }
-
+    public void TakeUtensil()
+    {
+        base.Update();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<FoodItem>() != null)

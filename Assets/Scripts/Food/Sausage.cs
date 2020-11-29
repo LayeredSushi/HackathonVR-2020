@@ -1,7 +1,8 @@
 ﻿public class Sausage : FoodItem
 {
-    void Update()
+    new void Update()
     {
+        base.Update();
         base.Cook();   
     }
 }

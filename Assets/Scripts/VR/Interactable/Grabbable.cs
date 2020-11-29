@@ -23,7 +23,7 @@ public class Grabbable : Interactable {
     }
 
     // Update is called once per frame
-    void Update() {
+    public void Update() {
         if (grabber != null) {
             transform.position = grabber.transform.position;
             float x = grabber.transform.localRotation.x;
