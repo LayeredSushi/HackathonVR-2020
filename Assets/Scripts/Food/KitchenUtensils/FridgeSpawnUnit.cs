@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class FridgeSpawnUnit : MonoBehaviour
 {
-    public FoodItem[] prefabs;
-    public int index;
+    public FoodItem prefab;
 
-    private FridgeSpawnUnit[] fridgeSpawnUnits;
-    void Start()
+    private void Awake()
     {
-        fridgeSpawnUnits = GetComponentsInChildren<FridgeSpawnUnit>();
+        Instantiate(prefab);
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        Instantiate(prefabs[index]);
+        Instantiate(prefab);
     }
 }
