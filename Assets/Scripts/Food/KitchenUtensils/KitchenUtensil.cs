@@ -1,12 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class KitchenUtensil : Grabbable
 {
     public float temperature;
     public FoodItem foodItem;
     public float temperatureChangeRate = 0.05f;
+    public AudioSource audioSource;
+    public string soundName;
+
+    private void Start()
+    {
+        if(audioSource != null && soundName != null)
+        {
+            audioSource.clip = Resources.Load("Sounds/" + soundName) as AudioClip;
+        }
+    }
 
     public void Update()
     {
@@ -19,15 +27,17 @@ public abstract class KitchenUtensil : Grabbable
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.GetComponent<FoodItem>() != null)
         {
             FoodItem item = other.gameObject.GetComponent<FoodItem>();
             if (item.AppliedUtensil == this)
             {
-
                 foodItem = item;
                 item.StopAllCoroutines();
+            }
+            if(audioSource != null && !audioSource.isPlaying)
+            {
+                audioSource.Play();
             }
         }
     }
@@ -38,6 +48,11 @@ public abstract class KitchenUtensil : Grabbable
             if (foodItem != null)
                 StartCoroutine(foodItem.CoolOff());
             foodItem = null;
+
+            if (audioSource != null && audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
         }
 
         Debug.Log(other + "Exit");
