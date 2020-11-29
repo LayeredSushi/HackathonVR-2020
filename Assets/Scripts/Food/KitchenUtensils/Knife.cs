@@ -24,7 +24,7 @@ public class Knife : Grabbable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<FoodItem>())
+        if (other.gameObject.GetComponent<FoodItem>()!=null && !other.gameObject.GetComponent<FoodItem>().IsProcessed)
         {
             other.gameObject.GetComponent<FoodItem>().ProcessFood();
         }

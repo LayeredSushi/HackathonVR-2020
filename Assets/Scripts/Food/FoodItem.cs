@@ -15,7 +15,7 @@ public abstract class FoodItem : Grabbable
     public bool isFinished = false;
 
     public Material SpoiledMaterial; // overcooked
-    public Material ProcessedFood;//knifed
+    public Mesh ProcessedFood;//knifed
     public Material CookedFood;//cooked
 
     public KitchenUtensil AppliedUtensil;
@@ -68,7 +68,19 @@ public abstract class FoodItem : Grabbable
     public void ProcessFood()
     {
         if (ProcessedFood != null)
-            GetComponent<Renderer>().material = ProcessedFood;
+        {
+            IsProcessed = true;
+            GetComponent<MeshFilter>().mesh = ProcessedFood;
+            foreach (var coll in gameObject.GetComponents<MeshCollider>())
+            {
+                Destroy(coll);
+            }
+
+            gameObject.AddComponent<MeshCollider>().convex = true;
+         
+            Debug.Log(GetComponent<MeshCollider>().isTrigger);
+            gameObject.AddComponent<BoxCollider>().isTrigger = true;
+        }
     }
 
     public void TurnToCookedFood()

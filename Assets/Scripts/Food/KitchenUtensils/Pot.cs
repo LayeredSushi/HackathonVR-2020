@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Pot : KitchenUtensil
 {
+    public bool IsRefilled = false;
     private new void Update()
     {
-        base.Update();
+        if (IsRefilled)
+            base.Update();
+    }
+
+    public IEnumerator RefillWater()
+    {
+        return null;
     }
 }
