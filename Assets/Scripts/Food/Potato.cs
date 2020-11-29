@@ -9,4 +9,14 @@ public class Potato : FoodItem
     {
         Debug.Log("My life is POTATO");
     }
+
+    private void Update()
+    {
+
+    }
+    public override void Cook()
+    {
+        if (IsProcessed)
+            base.Cook();
+    }
 }

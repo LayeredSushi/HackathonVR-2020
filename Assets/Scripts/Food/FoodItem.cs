@@ -7,17 +7,23 @@ public abstract class FoodItem : Grabbable
     public float minimumCookingTemperature = 120f;
     public float cookingTime = 20f;
     public float itemHp = 100f;
+
     public bool isSpoiled = false;
+    public bool IsProcessed=false;
     public bool isFinished = false;
 
-    public Mesh SpoiledMesh;
-    public Mesh ProcessedFood;
-    private void Update()
+    public Mesh SpoiledMesh; // overcooked
+    public Mesh ProcessedFood;//knifed
+    public Mesh CookedFood;//cooked
+
+   
+
+    public virtual void Cook()
     {
         if (currentTemperature >= minimumCookingTemperature && currentTemperature < startingSpoilTemperature && !isSpoiled)
         { // food is cooked under normal temperature and is not spoiled
             cookingTime = Mathf.Clamp(cookingTime -= Time.deltaTime, 0, cookingTime);
-            //Timer.GetInstance().StartTimer(cookingTime);
+            Timer.GetInstance().StartTimer(cookingTime);
         }
         else if (currentTemperature > startingSpoilTemperature)
         {
@@ -51,5 +57,10 @@ public abstract class FoodItem : Grabbable
     public void ProcessFood()
     {
         GetComponent<MeshFilter>().mesh = ProcessedFood;
+    }
+
+    public void TurnToCookedFood()
+    {
+        GetComponent<MeshFilter>().mesh = CookedFood;
     }
 }
