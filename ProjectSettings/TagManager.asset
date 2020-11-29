@@ -7,6 +7,7 @@ TagManager:
   - projectile
   - FxTemporaire
   - Grabbable
+  - AudioSourceEffects
   layers:
   - Default
   - TransparentFX
