@@ -22,7 +22,6 @@ public abstract class FoodItem : Grabbable
 
     public virtual void Cook()
     {
-        AudioSource audioSource = GameObject.FindGameObjectWithTag("AudioSourceEffects").GetComponent<AudioSource>();
         if (currentTemperature >= minimumCookingTemperature && currentTemperature < startingSpoilTemperature && !isSpoiled)
         { // food is cooked under normal temperature and is not spoiled
             cookingTime = Mathf.Clamp(cookingTime -= Time.deltaTime, 0, cookingTime);

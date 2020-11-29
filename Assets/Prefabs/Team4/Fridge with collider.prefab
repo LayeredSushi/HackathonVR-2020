@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 436837243}
-  firstState: FridgeDoorAnimation
-  secondState: FridgeDoorClosing
+  firstState: FridgeDoorClosing
+  secondState: FridgeDoorAnimation
 --- !u!95 &436837243
 Animator:
   serializedVersion: 3

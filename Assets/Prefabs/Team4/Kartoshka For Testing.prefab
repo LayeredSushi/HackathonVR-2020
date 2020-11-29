@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7509100831887968172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.098, y: 3.618, z: -3.078}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -146,5 +146,15 @@ MonoBehaviour:
   scalingDown: 0
   beingGrabbed: 0
   scaleSpeed: 0.1
-  temperature: 0
-  maximumTemperature: 100
+  currentTemperature: 0
+  startingSpoilTemperature: 180
+  minimumCookingTemperature: 120
+  cookingTime: 20
+  itemHp: 100
+  isSpoiled: 0
+  IsProcessed: 0
+  isFinished: 0
+  SpoiledMesh: {fileID: 0}
+  ProcessedFood: {fileID: 0}
+  CookedFood: {fileID: 0}
+  AppliedUtensil: {fileID: 0}
