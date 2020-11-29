@@ -9,14 +9,14 @@ public abstract class FoodItem : Grabbable
     public float itemHp = 100f;
 
     public bool isSpoiled = false;
-    public bool IsProcessed=false;
+    public bool IsProcessed = false;
     public bool isFinished = false;
 
     public Mesh SpoiledMesh; // overcooked
     public Mesh ProcessedFood;//knifed
     public Mesh CookedFood;//cooked
 
-   
+    public KitchenUtensil AppliedUtensil;
 
     public virtual void Cook()
     {
@@ -56,7 +56,8 @@ public abstract class FoodItem : Grabbable
 
     public void ProcessFood()
     {
-        GetComponent<MeshFilter>().mesh = ProcessedFood;
+        if (ProcessedFood != null)
+            GetComponent<MeshFilter>().mesh = ProcessedFood;
     }
 
     public void TurnToCookedFood()

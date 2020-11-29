@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sausages : FoodItem
+public class Sausage : FoodItem
 {
    
     
