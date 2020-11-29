@@ -20,10 +20,10 @@ public abstract class KitchenUtensil : Grabbable
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.gameObject.GetComponent<FoodItem>())
+        if (other.gameObject.GetComponent<FoodItem>() != null)
         {
-
-            foodItem = other.gameObject.GetComponent<FoodItem>();
+            FoodItem item = other.gameObject.GetComponent<FoodItem>();
+            if (item.AppliedUtensil == this) foodItem = item;
         }
     }
     private void OnTriggerExit(Collider other)
