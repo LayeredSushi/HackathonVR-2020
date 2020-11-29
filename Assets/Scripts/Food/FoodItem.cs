@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public abstract class FoodItem : Grabbable
 {
     public float currentTemperature;
     public float startingSpoilTemperature = 180f;
     public float minimumCookingTemperature = 120f;
+    public float temperatureCoolOffRate = 1f;
     public float cookingTime = 20f;
     public float itemHp = 100f;
 
@@ -12,9 +14,9 @@ public abstract class FoodItem : Grabbable
     public bool IsProcessed = false;
     public bool isFinished = false;
 
-    public Mesh SpoiledMesh; // overcooked
-    public Mesh ProcessedFood;//knifed
-    public Mesh CookedFood;//cooked
+    public Material SpoiledMaterial; // overcooked
+    public Material ProcessedFood;//knifed
+    public Material CookedFood;//cooked
 
     public KitchenUtensil AppliedUtensil;
 
@@ -35,7 +37,10 @@ public abstract class FoodItem : Grabbable
             isFinished = true;
         }
         if (isFinished)
-            DecreaseItemHp(minimumCookingTemperature / 100f);
+        {
+            DecreaseItemHp(minimumCookingTemperature / 200f);
+            TurnToCookedFood();
+        }
 
         if (itemHp <= 0)
         {
@@ -47,7 +52,7 @@ public abstract class FoodItem : Grabbable
 
     private void Spoil()
     {
-        GetComponent<MeshFilter>().mesh = SpoiledMesh;
+        GetComponent<Renderer>().material = SpoiledMaterial;
     }
     public void DecreaseItemHp(float value)
     {
@@ -57,11 +62,17 @@ public abstract class FoodItem : Grabbable
     public void ProcessFood()
     {
         if (ProcessedFood != null)
-            GetComponent<MeshFilter>().mesh = ProcessedFood;
+            GetComponent<Renderer>().material = ProcessedFood;
     }
 
     public void TurnToCookedFood()
     {
-        GetComponent<MeshFilter>().mesh = CookedFood;
+        GetComponent<Renderer>().material = CookedFood;
+    }
+
+    public IEnumerator CoolOff()
+    {
+        currentTemperature = Mathf.Clamp(currentTemperature - temperatureCoolOffRate, 0, currentTemperature);
+        yield return new WaitForSeconds(0.1f);
     }
 }

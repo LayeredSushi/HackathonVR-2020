@@ -23,13 +23,20 @@ public abstract class KitchenUtensil : Grabbable
         if (other.gameObject.GetComponent<FoodItem>() != null)
         {
             FoodItem item = other.gameObject.GetComponent<FoodItem>();
-            if (item.AppliedUtensil == this) foodItem = item;
+            if (item.AppliedUtensil == this)
+            {
+
+                foodItem = item;
+                item.StopAllCoroutines();
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<FoodItem>())
         {
+            if (foodItem != null)
+                StartCoroutine(foodItem.CoolOff());
             foodItem = null;
         }
 
