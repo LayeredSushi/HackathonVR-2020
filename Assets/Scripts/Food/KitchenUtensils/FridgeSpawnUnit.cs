@@ -11,7 +11,7 @@ public class FridgeSpawnUnit : MonoBehaviour
 
     private void Awake()
     {
-        Instantiate(prefab, gameObject.transform);
+        FoodItem foodItem = Instantiate(prefab, transform.position /*+ new Vector3(0, -0.3f, 0)*/, transform.rotation);
         spawnable = true;
     }
 
@@ -25,7 +25,8 @@ public class FridgeSpawnUnit : MonoBehaviour
     {
         spawnable = false;
         yield return new WaitForSeconds(7f);
-        Instantiate(prefab, gameObject.transform);
+        FoodItem foodItem = Instantiate(prefab, transform.position/* + new Vector3(0,-0.3f,0)*/, transform.rotation);
+        foodItem.transform.position = transform.position;
         spawnable = true;
     }
 }
