@@ -15,7 +15,7 @@ public class Pot : KitchenUtensil
     {
         Water.SetActive(false);
         WaterEndingPosition = transform.position;
-        WaterStartingPosition = WaterEndingPosition- GetComponent<Bounds>().size/2;
+        WaterStartingPosition = WaterEndingPosition - Vector3.up;
     }
     private new void Update()
     {

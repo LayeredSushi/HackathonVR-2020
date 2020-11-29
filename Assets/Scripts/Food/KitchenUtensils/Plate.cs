@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Plate : MonoBehaviour
 {
+    public GameObject emptyPlate;
     public GameObject sausageOnPlatePrefab;
     public GameObject potatoOnPlatePrefab;
     public GameObject sausageAndPotatoOnPlateprefab;
@@ -38,8 +39,17 @@ public class Plate : MonoBehaviour
     private void InstantiateFoodOnThePlate(FoodItem foodItem, GameObject foodType)
     {
         Destroy(foodItem.gameObject);
-        GameObject newPlate = Instantiate(sausageOnPlatePrefab, transform.position + new Vector3(0, 0.3f, 0), transform.rotation);
-        newPlate.transform.SetParent(null);
-        Destroy(gameObject);
+        //GameObject newPlate = Instantiate(foodType, transform.position + new Vector3(0, 0.3f, 0), transform.rotation);
+        DisableAll();
+        foodType.SetActive(true);
+        //newPlate.transform.SetParent(null);
+        //Destroy(gameObject);
+    }
+    private void DisableAll()
+    {
+        emptyPlate.SetActive(false);
+        sausageOnPlatePrefab.SetActive(false);
+        //potatoOnPlatePrefab.SetActive(false);
+        sausageAndPotatoOnPlateprefab.SetActive(false);
     }
 }
