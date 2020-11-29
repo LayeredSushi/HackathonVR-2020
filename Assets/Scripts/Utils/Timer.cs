@@ -9,14 +9,17 @@ public class Timer : MonoBehaviour
     public TMP_Text timeText;
 
     private static Timer instance;
-    private bool HasTaskBeenCompleted = false;
 
-    //ARTSIOM, USE THIS TO START TAAAAAASKSSSS
-    public void StartInstructionsSet(float timer)
+    private void Start()
+    {
+        StartInstructionsSet();
+    }
+
+    public void StartInstructionsSet()
     {
         Instructions.GetInstance().GetCurrentTask();
         timeRemaining = Instructions.GetInstance().GetCurrentTaskTime();
-        StartTimer(timer);
+        StartTimer(Instructions.GetInstance().GetCurrentTaskTime());
     }
 
     private void Awake()
@@ -91,25 +94,12 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (Input.GetKeyDown("space"))
-        {
-            Instructions.GetInstance().SetTaskCompleted();
-            StartTimer(Instructions.GetInstance().GetCurrentTaskTime());
-        }*/
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
             {
-                if (HasTaskBeenCompleted)
-                {
-                    Instructions.GetInstance().SetTaskCompleted();
-                    //Move to next one
-                    StartTimer(Instructions.GetInstance().GetCurrentTaskTime());
-                } else
-                {
-                    timeRemaining -= Time.deltaTime;
-                    DisplayTime(timeRemaining);
-                }
+                 timeRemaining -= Time.deltaTime;
+                 DisplayTime(timeRemaining);
             }
             else
             {
@@ -122,9 +112,12 @@ public class Timer : MonoBehaviour
                 }
                 else
                 {
-                    SetRedTextColor();
-                    timeText.text = "Schneller!";
-                    Debug.Log("Time has run out!");
+                    //SetRedTextColor();
+                    //timeText.text = "Schneller!";
+                    //Debug.Log("Time has run out!");
+                    Instructions.GetInstance().SetTaskCompleted();
+                    //Move to next one
+                    StartTimer(Instructions.GetInstance().GetCurrentTaskTime());
                 }
             }
         }
