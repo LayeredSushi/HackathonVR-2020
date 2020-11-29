@@ -13,6 +13,6 @@ public class Pot : KitchenUtensil
 
     public IEnumerator RefillWater()
     {
-        return null;
+        yield return null;
     }
 }
