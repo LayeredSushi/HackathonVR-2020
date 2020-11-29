@@ -10,10 +10,12 @@ public class Potato : FoodItem
         Debug.Log("My life is POTATO");
     }
 
-    private void Update()
+    public new void  Update()
     {
-
+        base.Update();
+        Cook();
     }
+    
     public override void Cook()
     {
         if (IsProcessed)

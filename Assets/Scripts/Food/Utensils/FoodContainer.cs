@@ -10,11 +10,6 @@ public class FoodContainer : Grabbable
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+   
 
 }

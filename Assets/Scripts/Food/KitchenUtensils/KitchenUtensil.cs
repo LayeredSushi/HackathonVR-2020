@@ -8,15 +8,19 @@ public abstract class KitchenUtensil : Grabbable
     public FoodItem foodItem;
     public float temperatureChangeRate = 0.05f;
 
-    public void Update()
+    public new  void Update()
     {
+       // base.Update();
         if (foodItem)
             if (foodItem.currentTemperature < temperature)
                 foodItem.currentTemperature = Mathf.Clamp(foodItem.currentTemperature + temperatureChangeRate, 0, temperature);
             else if (foodItem.currentTemperature > temperature)
                 foodItem.currentTemperature = Mathf.Clamp(foodItem.currentTemperature - temperatureChangeRate, 0, temperature);
     }
-
+    public void TakeUtensil()
+    {
+        base.Update();
+    }
     private void OnTriggerEnter(Collider other)
     {
 

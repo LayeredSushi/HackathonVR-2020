@@ -22,6 +22,7 @@ public abstract class FoodItem : Grabbable
 
     public virtual void Cook()
     {
+        
         if (currentTemperature >= minimumCookingTemperature && currentTemperature < startingSpoilTemperature && !isSpoiled)
         { // food is cooked under normal temperature and is not spoiled
             cookingTime = Mathf.Clamp(cookingTime -= Time.deltaTime, 0, cookingTime);

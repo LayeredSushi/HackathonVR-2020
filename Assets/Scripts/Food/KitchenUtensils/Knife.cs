@@ -15,7 +15,10 @@ public class Knife : Grabbable
             else if (!IsActive) _IsActive = true;
         }
     }
-
+    private new void Update()
+    {
+        base.Update();
+    }
     public override void OnInteraction(HandManager handManager, PointerEventArgs args)
     {
         base.OnInteraction(handManager, args);
