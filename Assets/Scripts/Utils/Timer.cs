@@ -9,6 +9,15 @@ public class Timer : MonoBehaviour
     public TMP_Text timeText;
 
     private static Timer instance;
+    private bool HasTaskBeenCompleted = false;
+
+    //ARTSIOM, USE THIS TO START TAAAAAASKSSSS
+    public void StartInstructionsSet(float timer)
+    {
+        Instructions.GetInstance().GetCurrentTask();
+        timeRemaining = Instructions.GetInstance().GetCurrentTaskTime();
+        StartTimer(timer);
+    }
 
     private void Awake()
     {
@@ -29,29 +38,41 @@ public class Timer : MonoBehaviour
 
     public void StartTimer(float timeRemaining)
     {
-        SetBlackTextColor();
+        if (!Instructions.GetInstance().AreAllTasksCompleted())
+        {
+            SetBlackTextColor();
 
-        StopTimer();
-        this.timeRemaining = timeRemaining;
-        timerIsRunning = true;
+            StopTimer();
+            this.timeRemaining = timeRemaining;
+            timerIsRunning = true;
+        }
     }
 
     public void StopTimer()
     {
-        timerIsRunning = false;
+        if (!Instructions.GetInstance().AreAllTasksCompleted())
+        {
+            timerIsRunning = false;
+        }    
     }
 
     public void ContinueTimer()
     {
-        SetBlackTextColor();
-        timerIsRunning = true;
+        if (!Instructions.GetInstance().AreAllTasksCompleted())
+        {
+           SetBlackTextColor();
+           timerIsRunning = true;
+        }
     }
 
     public void SetError(string errorMessage)
     {
-        StopTimer();
-        SetRedTextColor();
-        timeText.text = errorMessage;
+        if (!Instructions.GetInstance().AreAllTasksCompleted())
+        {
+            StopTimer();
+            SetRedTextColor();
+            timeText.text = errorMessage;
+        }
     }
 
     private void SetBlackTextColor()
@@ -70,18 +91,41 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("space"))
+        {
+            Instructions.GetInstance().SetTaskCompleted();
+            StartTimer(Instructions.GetInstance().GetCurrentTaskTime());
+        }
         if (timerIsRunning)
         {
             if (timeRemaining > 0)
             {
-                timeRemaining -= Time.deltaTime;
-                DisplayTime(timeRemaining);
+                if (HasTaskBeenCompleted)
+                {
+                    Instructions.GetInstance().SetTaskCompleted();
+                    //Move to next one
+                    StartTimer(Instructions.GetInstance().GetCurrentTaskTime());
+                } else
+                {
+                    timeRemaining -= Time.deltaTime;
+                    DisplayTime(timeRemaining);
+                }
             }
             else
             {
-                Debug.Log("Time has run out!");
-                timeRemaining = 0;
-                timerIsRunning = false;
+                if (Instructions.GetInstance().AreAllTasksCompleted())
+                {
+                    SetBlackTextColor();
+                    timeText.text = "Fertig!";
+                    timeRemaining = 0;
+                    timerIsRunning = false; 
+                }
+                else
+                {
+                    SetRedTextColor();
+                    timeText.text = "Schneller!";
+                    Debug.Log("Time has run out!");
+                }
             }
         }
     }
