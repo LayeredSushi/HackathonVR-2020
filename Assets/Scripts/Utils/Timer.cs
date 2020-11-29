@@ -91,11 +91,11 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        /*if (Input.GetKeyDown("space"))
         {
             Instructions.GetInstance().SetTaskCompleted();
             StartTimer(Instructions.GetInstance().GetCurrentTaskTime());
-        }
+        }*/
         if (timerIsRunning)
         {
             if (timeRemaining > 0)

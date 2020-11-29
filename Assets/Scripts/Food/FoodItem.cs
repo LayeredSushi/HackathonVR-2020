@@ -25,7 +25,8 @@ public abstract class FoodItem : Grabbable
         if (currentTemperature >= minimumCookingTemperature && currentTemperature < startingSpoilTemperature && !isSpoiled)
         { // food is cooked under normal temperature and is not spoiled
             cookingTime = Mathf.Clamp(cookingTime -= Time.deltaTime, 0, cookingTime);
-            Timer.GetInstance().StartTimer(cookingTime);
+            //Timer.GetInstance().StartTimer(cookingTime);
+            Timer.GetInstance().StartInstructionsSet(cookingTime);
         }
         else if (currentTemperature > startingSpoilTemperature)
         {
