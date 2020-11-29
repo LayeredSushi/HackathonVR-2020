@@ -5,21 +5,41 @@ using UnityEngine;
 public class Plate : MonoBehaviour
 {
     public GameObject sausageOnPlatePrefab;
+    public GameObject potatoOnPlatePrefab;
+    public GameObject sausageAndPotatoOnPlateprefab;
+
+    public bool isSausageCreated = false;
+    public bool isPotatoCreated = false;
     private void OnTriggerEnter(Collider other)
     {
         FoodItem foodItem = other.gameObject.GetComponent<FoodItem>();
         if (foodItem)
         {
-            if(foodItem.isFinished)
+            if (foodItem.isFinished)
             {
-                if(foodItem.GetType() == typeof(Sausage))
+                if (foodItem.GetType() == typeof(Sausage) && !isSausageCreated)
                 {
-                    Destroy(foodItem.gameObject);
-                    GameObject newPlate = Instantiate(sausageOnPlatePrefab, transform.position + new Vector3(0,0.3f,0), transform.rotation);
-                    newPlate.transform.SetParent(null);
-                    Destroy(gameObject);
+                    InstantiateFoodOnThePlate(foodItem, sausageOnPlatePrefab);
+                    isSausageCreated = true;
+                }
+                if (foodItem.GetType() == typeof(Potato) && isPotatoCreated)
+                {
+                    InstantiateFoodOnThePlate(foodItem, potatoOnPlatePrefab);
+                    isPotatoCreated = true;
                 }
             }
         }
+        if (isSausageCreated && isPotatoCreated)
+        {
+            InstantiateFoodOnThePlate(null, sausageAndPotatoOnPlateprefab);
+        }
+    }
+
+    private void InstantiateFoodOnThePlate(FoodItem foodItem, GameObject foodType)
+    {
+        Destroy(foodItem.gameObject);
+        GameObject newPlate = Instantiate(sausageOnPlatePrefab, transform.position + new Vector3(0, 0.3f, 0), transform.rotation);
+        newPlate.transform.SetParent(null);
+        Destroy(gameObject);
     }
 }
